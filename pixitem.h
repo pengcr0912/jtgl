@@ -1,0 +1,71 @@
+﻿#ifndef PIXITEM_H
+#define PIXITEM_H
+
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
+#include <QPainter>
+#include "deviceinfo.h"
+#include "deviceparam.h"
+
+class DeviceInfo;
+
+class PixItem : public QGraphicsItem
+{
+
+public:
+    enum { Type = QGraphicsItem::UserType + 7 };
+    PixItem(QPixmap *pixmap, QGraphicsItem* parent = 0);
+    ~PixItem();
+
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    int type() const;
+    void statusCheck();
+
+//private:
+    QPixmap pix;     		//作为图元显示的图片
+    QString deviceCode;
+    QString deviceName;
+    QList<DeviceParam> deviceParamList;
+
+    DeviceInfo* deviceWindow;
+
+protected:
+    virtual void hoverMoveEvent(QGraphicsSceneHoverEvent * event);
+//    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+
+//    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+//    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+//    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+};
+
+//重载输入输出符号
+inline QDataStream &operator << (QDataStream &out, const QList<DeviceParam> &deviceParamList)
+{
+    out << deviceParamList.count();
+    for(int i=0; i<deviceParamList.count(); i++)
+    {
+        out << deviceParamList.at(i).paramName;
+        out << deviceParamList.at(i).paramMin;
+        out << deviceParamList.at(i).paramMax;
+    }
+    return out;
+}
+
+inline QDataStream &operator >> (QDataStream &in, QList<DeviceParam> &deviceParamList)
+{
+    int count;
+    DeviceParam deviceParamTemp;
+    in >> count;
+    for(int i=0; i<count; i++)
+    {
+        in >> deviceParamTemp.paramName;
+        in >> deviceParamTemp.paramMin;
+        in >> deviceParamTemp.paramMax;
+        deviceParamList.append(deviceParamTemp);
+    }
+    return in;
+}
+
+#endif // PIXITEM_H

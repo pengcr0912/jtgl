@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/background1.png</file>
+        <file>images/background.png</file>
+        <file>images/bringtofront.png</file>
+        <file>images/circle.png</file>
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/line.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/rectangle.png</file>
+        <file>images/redo.png</file>
+        <file>images/save.png</file>
+        <file>images/triangle.png</file>
+        <file>images/undo.png</file>
+        <file>images/deleteItem.png</file>
+        <file>images/floodfill.png</file>
+        <file>images/linecolor.png</file>
+        <file>images/pointer.png</file>
+        <file>images/sendtoback.png</file>
+        <file>images/text.png</file>
+        <file>images/italic.png</file>
+        <file>images/underline.png</file>
+        <file>images/bold.png</file>
+        <file>images/device.jpg</file>
+        <file>images/deviceItem.jpg</file>
+        <file>images/deviceItem2.jpg</file>
+        <file>images/doublearrow.png</file>
+        <file>images/siglearrow.png</file>
+    </qresource>
+</RCC>
